@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Introducción al Juego</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #f6f9fc, #d0f0c0);
+      color: #333;
+      padding: 40px 20px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 3.5rem;
+      background: linear-gradient(90deg, #00c853, #64dd17, #00c853);
+      background-size: 200% auto;
+      color: white;
+      padding: 20px;
+      border-radius: 20px;
+      animation: shine 3s linear infinite;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 6px #000;
+    }
+    @keyframes shine {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .content {
+      max-width: 950px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.1);
+    }
+
+    .paragraph {
+      display: flex;
+      align-items: flex-start;
+      background: #e0fbe0;
+      border-left: 8px solid #66bb6a;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+    .paragraph:hover {
+      transform: scale(1.02);
+    }
+    .number {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #43a047;
+      margin-right: 20px;
+      min-width: 40px;
+      text-shadow: 1px 1px 0 #fff;
+    }
+    .text {
+      font-size: 1.2rem;
+      color: #444;
+    }
+
+    .btn {
+      display: block;
+      margin: 50px auto 0;
+      padding: 18px 36px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #00c853, #76ff03);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.3);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 200%;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      background: linear-gradient(45deg, #00e676, #b2ff59);
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+  <h1> ¡Bienvenido a la Aventura de la Célula! </h1>
+  <div class="content">
+
+    <div class="paragraph"><div class="number">0</div><div class="text">Lee todo con mucha atención, te resultará importante.</div></div>
+    <div class="paragraph"><div class="number">1</div><div class="text">La célula es la parte más pequeña de los seres vivos que está viva. Es como una pequeña fábrica que trabaja para que todo funcione bien en nuestro cuerpo.</div></div>
+    <div class="paragraph"><div class="number">2</div><div class="text">El científico Robert Hooke descubrió la célula en 1665 al mirar un corcho con un microscopio. Vio pequeños cuadritos que parecían celdas.</div></div>
+    <div class="paragraph"><div class="number">3</div><div class="text">La membrana celular es como una piel que protege la célula y decide qué entra y qué sale de ella.</div></div>
+    <div class="paragraph"><div class="number">4</div><div class="text">El citoplasma es un líquido espeso dentro de la célula donde flotan todos los organelos. Es como el agua donde viven los muebles de una casa.</div></div>
+    <div class="paragraph"><div class="number">5</div><div class="text">El núcleo es como el cerebro de la célula. Guarda la información que dice cómo debe funcionar y cuándo debe crecer o dividirse.</div></div>
+    <div class="paragraph"><div class="number">6</div><div class="text">Las mitocondrias son las centrales de energía. Convierten el alimento en energía para que la célula pueda hacer su trabajo.</div></div>
+    <div class="paragraph"><div class="number">7</div><div class="text">Solo las células vegetales tienen pared celular. Es como una muralla extra que da forma y fuerza a la célula.</div></div>
+    <div class="paragraph"><div class="number">8</div><div class="text">Los cloroplastos son verdes y están en las plantas. Usan la luz del sol para hacer alimento con la fotosíntesis.</div></div>
+    <div class="paragraph"><div class="number">9</div><div class="text">Las células vegetales tienen pared celular y cloroplastos; las animales no. Pero ambas tienen núcleo, membrana y citoplasma.</div></div>
+    <div class="paragraph"><div class="number">10</div><div class="text">Los organelos son las partes pequeñas que están dentro de la célula y que tienen funciones especiales, como limpiar, dar energía o guardar cosas.</div></div>
+    <div class="paragraph"><div class="number">11</div><div class="text">El aparato de Golgi empaca y envía proteínas y sustancias a otras partes de la célula, como si fuera una oficina de correos.</div></div>
+    <div class="paragraph"><div class="number">12</div><div class="text">Los ribosomas fabrican proteínas, que son como ladrillos que la célula usa para crecer y repararse.</div></div>
+    <div class="paragraph"><div class="number">13</div><div class="text">Las vacuolas son espacios dentro de la célula que almacenan agua, comida o desechos. Son como alacenas o bolsas.</div></div>
+    <div class="paragraph"><div class="number">14</div><div class="text">La célula procariota es una célula sencilla, sin núcleo. Las bacterias son un ejemplo. Son como casas sin paredes internas.</div></div>
+    <div class="paragraph"><div class="number">15</div><div class="text">La célula eucariota es una célula más compleja que sí tiene núcleo. La mayoría de los seres vivos, como nosotros, están hechos de este tipo.</div></div>
+
+    <a href="personajes.html" class="btn">¡Comenzar el Juego! </a>
+  </div>
+</body>
+</html>

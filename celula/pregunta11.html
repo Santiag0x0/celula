@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pregunta 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Trebuchet MS', sans-serif;
+      background: linear-gradient(to right, #dce9f0, #f7e3db);
+      padding: 40px 20px;
+      color: #222;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      color: #3a5a40;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .character-info {
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 300px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .character-info img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+
+    .character-info img:hover {
+      transform: scale(1.1);
+    }
+
+    .character-info .name {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      color: #4caf50;
+    }
+
+    .question {
+      flex: 1;
+      padding: 30px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .question h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .question .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .question .options button {
+      padding: 12px 20px;
+      background-color: #6c9a8b;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .question .options button:hover {
+      background-color: #4b7f68;
+    }
+
+    .question .options button:focus {
+      outline: none;
+      border: 2px solid #a5d6a7;
+    }
+
+    .result-message {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #ff5722;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      display: none;
+      position: relative;
+    }
+
+    .result-message.correct {
+      background-color: #4caf50;
+    }
+
+    .result-message::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: -15px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 15px solid #ff5722;
+      transform: translateX(-50%);
+    }
+
+    .result-message.correct::before {
+      border-bottom-color: #4caf50;
+    }
+
+    .result-message p {
+      margin: 0;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .comment-box {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff5722;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      width: max-content;
+      display: none;
+      text-align: center;
+    }
+
+    .comment-box.correct {
+      background: #4caf50;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Pregunta 11: ¿Para qué sirve el aparato de Golgi en la célula?</h1>
+
+  <div class="container">
+    <div class="character-info">
+      <img id="personajeImagen" src="" alt="Personaje seleccionado">
+      <div id="personajeNombre" class="name"></div>
+      <div id="commentBox" class="comment-box"></div>
+    </div>
+
+    <div class="question">
+      <h2>Selecciona la respuesta correcta:</h2>
+      
+      <div class="options">
+        <button onclick="validarRespuesta('A')">A)  Para crear energía a partir del alimento </button>
+        <button onclick="validarRespuesta('B')">B)  Para empacar y enviar proteínas y otras sustancias dentro de la célula </button>
+        <button onclick="validarRespuesta('C')">C)  Para controlar el ADN de la célula </button>
+        <button onclick="validarRespuesta('D')">D)  Para proteger la célula de virus</button>
+      </div>
+    
+      <div class="result-message" id="resultMessage">
+        <p id="comentarioResultado"></p>
+      </div>
+    
+      <!-- Botón agregado -->
+      <button id="siguienteBtn" onclick="irASiguiente()" style="display:none; margin-top: 20px; padding: 12px 20px; background-color: #2196f3; color: white; font-size: 1.1rem; border: none; border-radius: 10px; cursor: pointer;">Siguiente pregunta ➡️</button>
+    </div>
+    
+
+  <script>
+    window.onload = function () {
+      if (window.location.pathname.includes('pregunta1.html')) {
+        localStorage.setItem('aciertos', 0);
+      }
+  
+      const nombre = localStorage.getItem('personajeNombre');
+      const imagen = localStorage.getItem('personajeImagen');
+  
+      document.getElementById('personajeNombre').innerText = nombre || 'Doctor';
+      document.getElementById('personajeImagen').src = imagen || 'ruta/por/defecto.jpg';
+    };
+  
+    function validarRespuesta(opcion) {
+  let respuestaCorrecta = 'B'; 
+  let resultMessage = document.getElementById('resultMessage');
+  let comentarioResultado = document.getElementById('comentarioResultado');
+  let commentBox = document.getElementById('commentBox');
+  let personajeNombre = document.getElementById('personajeNombre').innerText;
+
+  if (opcion === respuestaCorrecta) {
+    let aciertos = parseInt(localStorage.getItem('aciertos')) || 0;
+    localStorage.setItem('aciertos', aciertos + 1);
+
+    resultMessage.className = 'result-message correct';
+    comentarioResultado.innerHTML = `¡Correcto! El doctor ${personajeNombre} dice: "El aparato de Golgi es como el rappi de la celula"`;
+    commentBox.className = 'comment-box correct';
+    commentBox.innerHTML = `${personajeNombre}: ¡Correcto! ¡Muy bien!`;
+  } else {
+    resultMessage.className = 'result-message';
+    comentarioResultado.innerHTML = `Incorrecto. El doctor ${personajeNombre} dice: "Recuerda que el aparato de Golgi sirve como mensajero en la celula "`;
+    commentBox.className = 'comment-box';
+    commentBox.innerHTML = `${personajeNombre}: ¡Vuelve a intentarlo!`;
+  }
+
+  resultMessage.style.display = 'block';
+  commentBox.style.display = 'block';
+
+  // Mostrar el botón de siguiente
+  document.getElementById('siguienteBtn').style.display = 'inline-block';
+}
+
+    function irASiguiente() {
+  window.location.href = 'pregunta12.html';
+}
+
+  </script>
+  
+
+</body>
+</html>

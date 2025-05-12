@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Elige tu Personaje</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Trebuchet MS', sans-serif;
+      background: linear-gradient(to right, #c3f2ff, #e2ffe2);
+      padding: 40px 20px;
+      color: #222;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 40px;
+      color: #0d47a1;
+      text-shadow: 1px 1px 3px #fff;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .character {
+      background: #fff;
+      border: 3px solid #4caf50;
+      border-radius: 20px;
+      padding: 25px;
+      width: 300px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .character:hover {
+      transform: scale(1.05);
+    }
+
+    .character img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .name {
+      font-size: 1.8rem;
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+
+    .skills {
+      list-style: none;
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .skills li::before {
+      content: "✅ ";
+      color: #4caf50;
+    }
+
+    .btn {
+      display: block;
+      margin: 0 auto;
+      padding: 12px 20px;
+      background: #00c853;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #00e676;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="main-title">👾 Elige tu Personaje Científico</h1>
+  <div class="container">
+
+    <div class="character" onclick="seleccionarPersonaje('Dr. S', 'dr.png')">
+      <img src="dr.png" alt="Dr. S">
+      <div class="name">Dr. S</div>
+      <ul class="skills">
+        <li>Conocimiento celular avanzado</li>
+        <li>Visión microscópica</li>
+        <li>Poder de mitosis</li>
+      </ul>
+      <button class="btn">¡Seleccionar!</button>
+    </div>
+
+    <div class="character" onclick="seleccionarPersonaje('Dra. Z', 'doc.png')">
+      <img src="doc.png" alt="Dra. Z">
+      <div class="name">Dra. Z</div>
+      <ul class="skills">
+        <li>Control genético</li>
+        <li>Escudo de ADN</li>
+        <li>Comunicación con organelos</li>
+      </ul>
+      <button class="btn">¡Seleccionar!</button>
+    </div>
+
+  </div>
+
+  <!-- Audio de latido; se iniciará mediante JS tras interacción -->
+  <audio id="latidoAudio" src="latido.mp3"></audio>
+
+  <script>
+    // Pre-cargar audio para que esté listo tras primera interacción
+    const audio = document.getElementById('latidoAudio');
+    audio.load();
+
+    function seleccionarPersonaje(nombre, imagen) {
+      // Reproducir audio de latido al seleccionar (user gesture)
+      audio.currentTime = 0;
+      audio.play().catch(err => console.warn('Error al reproducir audio:', err));
+
+      localStorage.setItem('personajeNombre', nombre);
+      localStorage.setItem('personajeImagen', imagen);
+      // Demora para escuchar el latido antes de cambiar de página
+      setTimeout(() => {
+        window.location.href = "pregunta1.html";
+      }, 600);
+    }
+
+    // Recuperar el nombre del personaje seleccionado al recargar la página
+    window.onload = function() {
+      const personajeNombre = localStorage.getItem('personajeNombre');
+      if (personajeNombre) {
+        const h1 = document.getElementById('main-title');
+        h1.textContent = `¡Has seleccionado a ${personajeNombre}!`;
+      }
+    }
+  </script>
+
+</body>
+</html>
